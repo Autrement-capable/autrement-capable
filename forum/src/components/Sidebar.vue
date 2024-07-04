@@ -17,7 +17,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    background: #f4f4f4;
+    background: #fefefe;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   }

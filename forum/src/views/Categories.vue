@@ -1,44 +1,41 @@
 <script setup>
-  import { categories } from '../data/data.js'
+  import { useRouter } from 'vue-router'
+  import { categoriesList } from '../data/data.js'
   import CategoriesCard from '../components/CategoriesCard.vue'
+
+  const router = useRouter()
+
+  const categoryClicked = (categoryClicked) => {
+    console.log(categoryClicked)
+    router.push({ name: 'postsList', params: { category: categoryClicked } })
+  }
 </script>
 
 <template>
-    <div class="test">
-      <h1>Categories</h1>
-      <ul class="cardContainer">
-        <li v-for="category in categories" :key="category.nameCode" class="categoriesCard">
-          <router-link :to="'/posts/' + category.nameCode">{{ category.name }}</router-link>
-          <CategoriesCard :categoryTitle="category.name" />
-        </li>
-      </ul>
-    </div>
-
+  <ul class="cardContainer">
+    <li v-for="category in categoriesList" :key="category.nameCode" class="categoriesCard" @click="categoryClicked(category.nameCode)">
+      <CategoriesCard :category="category" />
+    </li>
+  </ul>
 </template>
 
 <style scoped>
-  .test {
-    background-color: brown;
-    width: auto;
-    height: 100%;
-  }
   .cardContainer {
     list-style: none;
     display: flex;
     flex-direction: column;
-    /* background-color: aqua; */
-    width: 100%;
-    height: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .categoriesCard {
     margin: 10px 0;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: blueviolet;
-    width: 80%;
+    border-radius: 8px;
+    width: 70%;
     height: 10%;
+    background: #ffffff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   }
 
 </style>

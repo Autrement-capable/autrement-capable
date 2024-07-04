@@ -4,18 +4,22 @@
     import { postsList } from '../data/data.js'
     import PostCard from '@/components/PostCard.vue';
 
+    const props = defineProps(['category'])
     const posts = ref([])
     const router = useRouter()
-    posts.value = postsList.sort((a, b) => b.createdAt - a.createdAt)
+
+    posts.value = postsList.filter(post => post.categoryNameCode === props.category)
+
 
     const goToPost = (post) => {
-      router.push({ name: 'post', params: { category: post.categoryNameCode, id: post.id } })
+        router.push({ name: 'post', params: { category: props.category, id: post.id } })
     }
 
     watch(() => posts, () => {
-        console.log('[Latest] posts changed')
-      posts.value = postsList.sort((a, b) => b.createdAt - a.createdAt)
+        console.log('[PostsList] posts changed')
+      posts.value = postsList.filter(post => post.categoryNameCode === props.category)
     })
+
 </script>
 
 <template>
@@ -83,5 +87,6 @@
         list-style: none;
         margin-top: 0;
     }
+
 </style>
 

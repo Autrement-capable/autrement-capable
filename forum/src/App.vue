@@ -5,7 +5,7 @@
 <template>
   <div id="app">
       <Sidebar class="sidebar" />
-    <div class="content">
+    <div class="appContent">
       <router-view />
     </div>
   </div>
@@ -13,7 +13,7 @@
 
 <style>
 
-.content {
+.appContent {
   margin-left: 200px;
   padding-left: 10px;
 }
