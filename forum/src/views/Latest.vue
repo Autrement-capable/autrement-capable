@@ -1,21 +1,28 @@
 <script setup>
     import { ref, watch } from 'vue'
-    import { useRouter } from 'vue-router'
+    import { useRouter, useRoute } from 'vue-router'
     import { postsList } from '../data/data.js'
     import PostCard from '@/components/PostCard.vue';
 
     const posts = ref([])
     const router = useRouter()
+    const route = useRoute()
+
     posts.value = postsList.sort((a, b) => b.createdAt - a.createdAt)
 
     const goToPost = (post) => {
       router.push({ name: 'post', params: { category: post.categoryNameCode, id: post.id } })
     }
 
+    watch(() => route.params.id, (newId, oldId) => {
+        console.log(`[Latest] route changed from ${oldId} to ${newId}`)
+    })
+
     watch(() => posts, () => {
         console.log('[Latest] posts changed')
       posts.value = postsList.sort((a, b) => b.createdAt - a.createdAt)
     })
+    console.log("test2")
 </script>
 
 <template>

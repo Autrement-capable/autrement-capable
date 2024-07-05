@@ -1,11 +1,12 @@
 <script setup>
     import { ref, watch } from 'vue'
-    import { useRouter } from 'vue-router'
+    import { useRouter, useRoute } from 'vue-router'
     import { postsList } from '../data/data.js'
     import PostCard from '@/components/PostCard.vue';
 
     const posts = ref([])
     const router = useRouter()
+    const route = useRoute()
 
     posts.value = postsList.sort((a, b) => b.likes - a.likes)
 
@@ -13,10 +14,15 @@
       router.push({ name: 'post', params: { category: post.categoryNameCode, id: post.id } })
     }
 
+    watch(() => route.params.id, (newId, oldId) => {
+        console.log(`[Top] route changed from ${oldId} to ${newId}`)
+    })
+
     watch(() => posts, () => {
         console.log('[Top] posts changed')
-      posts.value = postsList.sort((a, b) => b.likes - a.likes)
+        posts.value = postsList.sort((a, b) => b.likes - a.likes)
     })
+    console.log("test1")
 </script>
 
 <template>

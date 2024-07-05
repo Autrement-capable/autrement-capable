@@ -6,7 +6,6 @@
   const router = useRouter()
 
   const categoryClicked = (categoryClicked) => {
-    console.log(categoryClicked)
     router.push({ name: 'postsList', params: { category: categoryClicked } })
   }
 </script>

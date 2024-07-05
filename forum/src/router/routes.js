@@ -8,8 +8,6 @@ import Post from '../views/PostPage.vue'
 const routes = [
   { path: '/', redirect: '/categories' },
   { path: '/categories', name: 'categories', component: Categories },
-  { path: '/posts/latest', name: 'latests', component: Latest },
-  { path: '/posts/top', name: 'top', component: Top },
   { path: '/posts/:category/', name: 'postsList', component: PostsList, props: true},
   { path: '/posts/:category/:id', name: 'post', component: Post, props: true},
 ]
