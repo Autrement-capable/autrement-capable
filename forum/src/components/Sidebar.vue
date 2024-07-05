@@ -1,4 +1,21 @@
 <script setup>
+  import { ref } from 'vue';
+  import CreatePostPopup from './CreatePostPopup.vue';
+
+  const showPopup = ref(false);
+
+  const openPopup = () => {
+    showPopup.value = true;
+  };
+
+  const closePopup = (payload) => {
+    console.log(payload);
+    showPopup.value = false;
+  };
+
+  const postData = (payload) => {
+    console.log(payload);
+  };
 </script>
 
 <template>
@@ -6,6 +23,8 @@
       <router-link to="/categories">Categories</router-link>
       <router-link to="/posts/latest">Latest</router-link>
       <router-link to="/posts/top">Top</router-link>
+      <button @click="openPopup()">Create Post</button>
+      <CreatePostPopup :showPopup="showPopup" @close-hook="closePopup" @send-hook="postData"/>
     </div>
 </template>
 
@@ -32,4 +51,11 @@
   .sidebar a.router-link-active {
     font-weight: bold;
   }
+
+  button {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
 </style>

@@ -25,10 +25,11 @@
             <p class="description">{{ props.category.description }}</p>
         </div>
         <div class="topMessage">
+            <!-- 3 Top message from the category-->
             <ul>
-                <li>Coucou un petit topic</li>
-                <li>Un autre topic</li>
-                <li>Ici ça parle heinnn</li>
+                <li>........................................</li>
+                <li>..............................</li>
+                <li>...................................................</li>
             </ul>
         </div>
     </div>
@@ -64,6 +65,11 @@
 
     .topMessage {
         margin-right: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
     }
 </style>
 

@@ -4,27 +4,81 @@
 
   const props = defineProps(['category', 'id'])
   const postId = parseInt(props.id)
-  const post = ref(postsList.find(post => post.id === postId))
 
+  const post = ref(postsList.find(post => post.id === postId))
 
 </script>
 
 <template>
-  <div>
+  <div class="post">
     <h1>{{ post.title }}</h1>
     <p> {{ post.content }}</p>
-    <p> Posted at: {{ post.createdAt }}</p>
-    <p> Likes: {{ post.likes }}</p>
+    <div class="postStats">
+      <p> Likes: {{ post.likes }}</p>
+      <p>{{ post.createdAt }}</p>
+    </div>
   </div>
-  <ul>
-    <li v-for="reply in post.replies">
+  <div class="replyAreaContainer">
+    <textarea class="replyArea"></textarea>
+    <button class="replyButton">Reply</button>
+  </div>
+  <ul class="repliesList">
+    <li v-for="reply in post.replies" class="reply">
       <p>{{ reply.content }}</p>
-      <p>Posted at:{{ reply.createdAt }}</p>
+      <p>author id: {{ reply.authorId }}</p>
+      <p>{{ reply.createdAt }}</p>
     </li>
   </ul>
 </template>
 
 <style scoped>
+  .post {
+    margin: 20px;
+    border-radius: 13px;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: lightgrey;
+  }
+
+  .postStats {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .reply {
+    margin: 10px;
+    border-radius: 13px;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: lightgrey;
+  }
+
+  .replyButton {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 13px;
+    align-self: flex-end;
+    margin-right: 10%;
+  }
+
+  .repliesList {
+    margin: 20px;
+  }
+
+  .replyAreaContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .replyArea {
+    width: 80%;
+    height: 100px;
+
+  }
+
   ul {
     list-style: none;
   }
